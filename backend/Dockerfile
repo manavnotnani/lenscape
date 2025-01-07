@@ -1,31 +1,37 @@
-FROM node:18-alpine AS BUILD_IMAGE
+FROM node:18-alpine AS build_image
 
-RUN apk --no-cache add curl yarn
+# Install Python and build tools
+RUN apk add --no-cache python3 py3-pip build-base
+
+# Set Python symlink (node-gyp looks for 'python')
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
+RUN apk --no-cache add curl npm
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 
 # install dependencies
-RUN yarn install
+RUN npm install
 
 COPY . ./
 
 # generate prisma
-RUN yarn db:generate
+RUN npm db:generate
 
 # build application
-RUN yarn build
+RUN npm build
 
 # remove development dependencies
-RUN yarn install --production --ignore-scripts --prefer-offline
+RUN npm install
 
 FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-COPY --from=BUILD_IMAGE /usr/src/app/dist ./dist
-COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
-COPY --from=BUILD_IMAGE /usr/src/app/prisma ./prisma
+COPY --from=build_image /usr/src/app/dist ./dist
+COPY --from=build_image /usr/src/app/node_modules ./node_modules
+COPY --from=build_image /usr/src/app/prisma ./prisma
 
 CMD ["/bin/sh", "-c", "npx prisma db push && node dist/main.js"]
