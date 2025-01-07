@@ -6,7 +6,8 @@ import { QueueNames } from 'src/packages/queues/base';
 import { QueuesService } from 'src/packages/queues/queues.service';
 import projectABI from './abi/influencerABI';
 const Web3 = require('web3');
-import { Provider } from "@lens-network/sdk/ethers";
+import { Provider } from '@lens-network/sdk/ethers';
+import { ethers } from 'ethers';
 
 let codeBlockChecking = 0;
 @Injectable()
@@ -19,7 +20,8 @@ export class Web3Service {
   }
   public contractAddress = process.env.SMART_CONTRACT_ADDR;
   public ethProvider = process.env.RPC_URL;
-  public lensProvider = 'https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzLxDFBA0NiaQtRSHT5D_'
+  public lensProvider = 'https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzLxDFBA0NiaQtRSHT5D_';
+  public provider: any;
   public web3: any;
   public contract: any;
   public web3Wss: any;
@@ -29,10 +31,13 @@ export class Web3Service {
     this.initNormalizeWeb3();
   }
   private initNormalizeWeb3() {
-    // this.web3 = new Web3(this.ethProvider);
-    this.lensWeb3 = new Provider(this.lensProvider);
-    this.contract = new this.lensWeb3.Contract(projectABI as any, this.contractAddress);
-    // this.contract = new this.web3.eth.Contract(projectABI as any, this.contractAddress);
+    this.web3 = new Web3(this.ethProvider);
+    this.contract = new this.web3.eth.Contract(projectABI as any, this.contractAddress);
+
+    this.provider = new Provider(
+      'https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzLxDFBA0NiaQtRSHT5D_',
+    );
+    this.contract = new ethers.Contract(this.contractAddress, projectABI, this.provider);
   }
   public async getPastEvents() {
     const redisBlockKey = 'web3_block_read';
@@ -45,7 +50,7 @@ export class Web3Service {
       toBlock: 'latest',
       address: this.contractAddress,
     });
-    const iface = new ethers.Interface(influencerABI);
+    const iface = new ethers.Interface(projectABI);
     const pastEvents = pastLogs.map((log) => {
       const parsed = iface.parseLog(log);
       return {
