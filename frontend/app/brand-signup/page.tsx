@@ -45,15 +45,15 @@ export default function BrandSignup() {
         // Get the current chain ID
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
         
-        // Lens Sepolia Testnet Chain ID
-        const lensChainIdHex = '0x90ef'; // For switching networks
+        // Lens Sepolia Testnet Chain ID with proper 0x prefix
+        const lensChainId = '0x90ef'; // 37111 in decimal
         
         // If not on Lens Testnet, try to switch to it
-        if (chainId.toLowerCase() !== lensChainIdHex) {
+        if (chainId.toLowerCase() !== lensChainId) {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: lensChainIdHex }],
+              params: [{ chainId: lensChainId }],
             });
           } catch (switchError) {
             // This error code indicates that the chain has not been added to MetaMask
@@ -62,14 +62,14 @@ export default function BrandSignup() {
                 await window.ethereum.request({
                   method: 'wallet_addEthereumChain',
                   params: [{
-                    chainId: '37111',  // Using decimal format instead of hex
+                    chainId: lensChainId,  // Using proper 0x-prefixed hex
                     chainName: 'Lens Network Sepolia Testnet',
                     nativeCurrency: {
                       name: 'GRASS',
                       symbol: 'GRASS',
                       decimals: 18
                     },
-                    rpcUrls: ['https://rpc.testnet.lens.dev'],
+                    rpcUrls: ['https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzLxDFBA0NiaQtRSHT5D_'],
                     blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
                   }],
                 });
