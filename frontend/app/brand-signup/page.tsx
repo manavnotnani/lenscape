@@ -42,49 +42,45 @@ export default function BrandSignup() {
         // Request account access
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         
-        // Get the current chain ID
-        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        
-        // Lens Sepolia Testnet Chain ID with proper 0x prefix
+        // Lens Testnet Chain ID
         const lensChainId = '0x90f7'; // 37111 in decimal
         
-        // If not on Lens Testnet, try to switch to it
-        if (chainId.toLowerCase() !== lensChainId) {
-          try {
-            await window.ethereum.request({
-              method: 'wallet_switchEthereumChain',
-              params: [{ chainId: lensChainId }],
-            });
-          } catch (switchError) {
-            // This error code indicates that the chain has not been added to MetaMask
-            if (switchError.code === 4902) {
-              try {
-                await window.ethereum.request({
-                  method: 'wallet_addEthereumChain',
-                  params: [{
-                    chainId: lensChainId,  // Using proper 0x-prefixed hex
-                    chainName: 'Lens Testnet',
-                    nativeCurrency: {
-                      name: 'GRASS',
-                      symbol: 'GRASS',
-                      decimals: 18
-                    },
-                    rpcUrls: ['https://rpc.testnet.lens.dev'],
-                    blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
-                  }],
-                });
-              } catch (addError) {
-                console.error("Failed to add Lens Sepolia network:", addError);
-                alert(addError.message);
-                throw addError;
-              }
-            }
-            console.error("Failed to switch to Lens Sepolia network:", switchError);
-            throw switchError;
+        try {
+          // First, try to add the network
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: lensChainId,
+              chainName: 'Lens Testnet',
+              nativeCurrency: {
+                name: 'GRASS',
+                symbol: 'GRASS',
+                decimals: 18
+              },
+              rpcUrls: ['https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzL'],
+              blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
+            }],
+          });
+  
+          // After adding, try to switch to it
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: lensChainId }],
+          });
+          
+          setIsWalletConnected(true);
+        } catch (error) {
+          if (error.code === -32602) {
+            console.error('Invalid chain ID format');
+            alert('Network configuration error. Please try again.');
+          } else if (error.code === 4001) {
+            console.error('User rejected the request');
+          } else {
+            console.error("Network error:", error);
+            alert(error.message);
           }
+          throw error;
         }
-        
-        setIsWalletConnected(true);
       } catch (error) {
         console.error("Failed to connect wallet or switch network:", error);
         alert(error.message);
