@@ -1,3 +1,10 @@
 {
-  "/page": "app/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/brand-signup/page": "app/brand-signup/page.js",
+  "/deal-confirmation/page": "app/deal-confirmation/page.js",
+  "/create-deal/page": "app/create-deal/page.js",
+  "/influencers/page": "app/influencers/page.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

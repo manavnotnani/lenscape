@@ -21,7 +21,7 @@ export default function Dashboard() {
       {/* Sidebar */}
       <aside className="w-64 bg-gray-800 shadow-md">
         <div className="p-4">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">InfluenceX.ai</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Lenscape</h1>
         </div>
         <nav className="mt-6">
           <Button variant="ghost" className="w-full justify-start p-4 text-left text-gray-300 hover:bg-gray-700 hover:text-white" onClick={handleCreateDeal}>

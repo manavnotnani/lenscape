@@ -61,7 +61,7 @@ export default function InvestorsPage() {
     setError(null)
     try {
       const response = await fetch(
-        `http://10.43.0.247:4000/v1/identities/influencers/address/${address}`
+        `https://0ff5-182-65-97-242.ngrok-free.app/v1/identities/influencers/address/${address}`
       )
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
@@ -121,7 +121,7 @@ export default function InvestorsPage() {
     setSubmittingContent(dealId)
 
     try {
-      const response = await fetch('http://10.43.0.247:4000/v1/identities/deal-influencer-submit', {
+      const response = await fetch('https://0ff5-182-65-97-242.ngrok-free.app/v1/identities/deal-influencer-submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ export default function InvestorsPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <header className="p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          InfluenceX.ai
+          Lenscape
         </h1>
         <Button
           onClick={connectWallet}

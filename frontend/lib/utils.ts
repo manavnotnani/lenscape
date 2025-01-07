@@ -5,4 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const contractAddress='0x4fC27c7F276D19b1A711747635CB63652119aACd'
+export const contractAddress='0xc790B7a3b2C76693E5d4982B6a9Fc0CCe7f4a823'

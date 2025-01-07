@@ -41,7 +41,7 @@ function CreateDeal() {
   const fetchInfluencers = async () => {
     try {
       const response = await fetch(
-        "http://10.43.0.247:4000/v1/identities/influencers"
+        "https://0ff5-182-65-97-242.ngrok-free.app/v1/identities/influencers"
       );
       const jsonData = await response.json();
       if (Array.isArray(jsonData.data)) {
@@ -197,7 +197,7 @@ function CreateDeal() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="totalBudget" className="text-gray-200">
-                Total Budget (GAS)
+                Total Budget (GRASS)
               </Label>
               <Input
                 id="totalBudget"

@@ -48,7 +48,7 @@ export default function BrandOnboarding() {
               Brand Onboarding
             </CardTitle>
             <CardDescription className="text-center text-gray-400">
-              Let's get your brand set up on InfluenceX.ai
+              Let's get your brand set up on Lenscape
             </CardDescription>
           </CardHeader>
           <CardContent>

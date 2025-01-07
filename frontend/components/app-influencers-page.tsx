@@ -39,7 +39,7 @@ export function Page() {
   const fetchDeals = async (address: string) => {
     setIsLoading(true)
     try {
-      const response = await fetch(`/v1/identities/influencers/address/${address}`)
+      const response = await fetch(`https://0ff5-182-65-97-242.ngrok-free.app/v1/identities/influencers/address/${address}`)
       if (!response.ok) {
         throw new Error('Failed to fetch deals')
       }
@@ -56,7 +56,7 @@ export function Page() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <header className="p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          InfluenceX.ai
+          Lenscape
         </h1>
         <Button
           onClick={connectWallet}
@@ -101,7 +101,7 @@ export function Page() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold text-pink-500">{deal.total_rewards} GAS</p>
+                  <p className="text-2xl font-bold text-pink-500">{deal.total_rewards} TOTAL BUDGET</p>
                   <Button className="mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white">
                     Apply for Deal
                   </Button>
