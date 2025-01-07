@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  CreateUserWithEmailDto,
-  CreateUserWithPhoneDto,
-} from './dto/create-user.dto';
+import { CreateUserWithEmailDto, CreateUserWithPhoneDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'nestjs-prisma';
 import { Prisma } from '@prisma/client';
@@ -10,18 +7,13 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class UsersService {
   constructor(private prismaService: PrismaService) {}
-  async createUser(
-    createUserDto: CreateUserWithEmailDto | CreateUserWithPhoneDto,
-  ) {
+  async createUser(createUserDto: CreateUserWithEmailDto | CreateUserWithPhoneDto) {
     return this.prismaService.user.create({
       data: createUserDto,
     });
   }
 
-  findVerifiedUsersByEmailArray(
-    emails: string[],
-    selectQuery?: Prisma.UserSelect,
-  ) {
+  findVerifiedUsersByEmailArray(emails: string[], selectQuery?: Prisma.UserSelect) {
     return this.prismaService.user.findMany({
       where: { email: { in: emails }, is_email_verified: true },
       select: {
@@ -32,10 +24,7 @@ export class UsersService {
     });
   }
 
-  findVerifiedUsersByMobileNumberArray(
-    mobileNumbers: string[],
-    selectQuery?: Prisma.UserSelect,
-  ) {
+  findVerifiedUsersByMobileNumberArray(mobileNumbers: string[], selectQuery?: Prisma.UserSelect) {
     return this.prismaService.user.findMany({
       where: { phone: { in: mobileNumbers }, is_phone_verified: true },
       select: {
@@ -82,7 +71,7 @@ export class UsersService {
   }
 
   async findUserByKey(key: string, value: any) {
-    let filterQuery = {};
+    const filterQuery = {};
     filterQuery[key] = value;
     return await this.prismaService.user.findFirst({ where: filterQuery });
   }

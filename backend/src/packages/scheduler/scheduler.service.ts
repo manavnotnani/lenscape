@@ -4,11 +4,9 @@ import { Web3Service } from 'src/web3/web3.service';
 
 @Injectable()
 export class SchedulerService {
-  constructor(
-    private web3Service: Web3Service
-  ) {
+  constructor(private web3Service: Web3Service) {
     // this.getReadingContractEvent();
-    this.getPastEvents()
+    this.getPastEvents();
   }
 
   // @Cron(CronExpression.EVERY_10_SECONDS)

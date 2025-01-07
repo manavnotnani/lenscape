@@ -32,6 +32,7 @@
     "@azure/msal-node": "^2.2.0",
     "@blazity/nest-file-fastify": "^1.0.0",
     "@fastify/multipart": "^8.1.0",
+    "@lens-network/sdk": "^0.0.0-canary-20241203140504",
     "@nestjs-modules/mailer": "^1.10.3",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/bull": "^10.0.1",
@@ -64,7 +65,7 @@
     "class-validator": "^0.14.0",
     "csv-parser": "^3.0.0",
     "dayjs": "^1.11.10",
-    "ethers": "^6.13.2",
+    "ethers": "^6.13.5",
     "exceljs": "^4.3.0",
     "googleapis": "^126.0.1",
     "libphonenumber-js": "^1.10.58",
@@ -85,7 +86,8 @@
     "string-similarity-js": "^2.1.4",
     "useragent": "^2.3.0",
     "web3": "1.7.0",
-    "youtube-captions-scraper": "^2.0.3"
+    "youtube-captions-scraper": "^2.0.3",
+    "zksync-ethers": "^6.15.3"
   },
   "devDependencies": {
     "@fastify/static": "^6.11.2",

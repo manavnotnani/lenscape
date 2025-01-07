@@ -49,6 +49,7 @@ export class RewardReleaseConsumer {
     const contract = new web3.eth.Contract(projectABI as any, contractAddress);
     const bnAmt = new web3.utils.toBN(Number(amount) * Math.pow(10, 18));
 
+    console.log('REACHEDD HERER');
     const tx = {
       from: process.env.REWARD_RELEASE_FROM_ADDR,
       to: contractAddress,
@@ -62,9 +63,14 @@ export class RewardReleaseConsumer {
       ).encodeABI(),
     };
 
+    console.log('REACHEDD HERER 111', {
+      tx,
+    });
     // Sign the transaction
     const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
-
+    console.log('REACHEDD HERER 222', {
+      tx,
+    });
     // Send the transaction
     const result = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
     if (result?.blockHash) {
