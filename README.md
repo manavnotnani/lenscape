@@ -2,6 +2,8 @@
 
 ![Lenscape Architecture](https://github.com/user-attachments/assets/1108574c-e0b5-4894-ae26-e7c90109e5e2)
 
+[APP LINK](https://lenscape.vercel.app/)
+
 ## SocialFi: The Future of Marketing
 
 Lenscape operates within the **SocialFi** niche, leveraging the cutting-edge features of the Lens Protocol. By combining social and financial interactions, Lenscape redefines how brands and influencers collaborate.
