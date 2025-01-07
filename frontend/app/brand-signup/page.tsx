@@ -63,13 +63,13 @@ export default function BrandSignup() {
                   method: 'wallet_addEthereumChain',
                   params: [{
                     chainId: lensChainId,  // Using proper 0x-prefixed hex
-                    chainName: 'Lens Network Sepolia Testnet',
+                    chainName: 'Lens Testnet',
                     nativeCurrency: {
                       name: 'GRASS',
                       symbol: 'GRASS',
                       decimals: 18
                     },
-                    rpcUrls: ['https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzLxDFBA0NiaQtRSHT5D_'],
+                    rpcUrls: ['https://rpc.testnet.lens.dev'],
                     blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
                   }],
                 });
