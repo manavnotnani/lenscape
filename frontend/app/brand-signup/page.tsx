@@ -46,15 +46,14 @@ export default function BrandSignup() {
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
         
         // Lens Sepolia Testnet Chain ID
-        // Make sure both chainId and params use the same format
-        const lensChainId = '0x90ef'; // 37111 in decimal, lowercase hex
+        const lensChainIdHex = '0x90ef'; // For switching networks
         
         // If not on Lens Testnet, try to switch to it
-        if (chainId.toLowerCase() !== lensChainId) {
+        if (chainId.toLowerCase() !== lensChainIdHex) {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: lensChainId }],
+              params: [{ chainId: lensChainIdHex }],
             });
           } catch (switchError) {
             // This error code indicates that the chain has not been added to MetaMask
@@ -63,7 +62,7 @@ export default function BrandSignup() {
                 await window.ethereum.request({
                   method: 'wallet_addEthereumChain',
                   params: [{
-                    chainId: lensChainId,  // Using the hex format
+                    chainId: '37111',  // Using decimal format instead of hex
                     chainName: 'Lens Network Sepolia Testnet',
                     nativeCurrency: {
                       name: 'GRASS',
@@ -76,13 +75,9 @@ export default function BrandSignup() {
                 });
               } catch (addError) {
                 console.error("Failed to add Lens Sepolia network:", addError);
-                if (addError.message.includes('Chain ID returned')) {
-                  alert("Network configuration error. Please make sure you're using the correct network details.");
-                }
+                alert(addError.message);
                 throw addError;
               }
-            } else if (switchError.code === -32603) {
-              alert("Please check if you have any pending MetaMask notifications.");
             }
             console.error("Failed to switch to Lens Sepolia network:", switchError);
             throw switchError;
