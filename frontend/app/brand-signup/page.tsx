@@ -46,7 +46,7 @@ export default function BrandSignup() {
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
         
         // Lens Sepolia Testnet Chain ID with proper 0x prefix
-        const lensChainId = '0x90ef'; // 37111 in decimal
+        const lensChainId = '0x90f7'; // 37111 in decimal
         
         // If not on Lens Testnet, try to switch to it
         if (chainId.toLowerCase() !== lensChainId) {
