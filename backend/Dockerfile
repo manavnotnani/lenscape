@@ -22,6 +22,8 @@ RUN ls -ltra .
 # generate prisma
 RUN npm run db:generate
 
+RUN npm run db:push
+
 # build application
 RUN npm run build
 
@@ -34,5 +36,6 @@ COPY --from=build_image /usr/src/app/.env /.env
 COPY --from=build_image /usr/src/app/dist ./dist
 COPY --from=build_image /usr/src/app/node_modules ./node_modules
 COPY --from=build_image /usr/src/app/prisma ./prisma
+
 
 CMD ["/bin/sh", "-c", "npx prisma db push && node dist/main.js"]
