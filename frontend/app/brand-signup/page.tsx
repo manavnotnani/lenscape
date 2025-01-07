@@ -45,11 +45,12 @@ export default function BrandSignup() {
         // Get the current chain ID
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
         
-        // Lens Sepolia Testnet Chain ID (in hex)
-        const lensChainId = '0x90EF'; // 37111 in decimal
+        // Lens Sepolia Testnet Chain ID
+        // Make sure both chainId and params use the same format
+        const lensChainId = '0x90ef'; // 37111 in decimal, lowercase hex
         
         // If not on Lens Testnet, try to switch to it
-        if (chainId !== lensChainId) {
+        if (chainId.toLowerCase() !== lensChainId) {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
@@ -62,7 +63,7 @@ export default function BrandSignup() {
                 await window.ethereum.request({
                   method: 'wallet_addEthereumChain',
                   params: [{
-                    chainId: lensChainId,
+                    chainId: lensChainId,  // Using the hex format
                     chainName: 'Lens Network Sepolia Testnet',
                     nativeCurrency: {
                       name: 'GRASS',
@@ -75,8 +76,13 @@ export default function BrandSignup() {
                 });
               } catch (addError) {
                 console.error("Failed to add Lens Sepolia network:", addError);
+                if (addError.message.includes('Chain ID returned')) {
+                  alert("Network configuration error. Please make sure you're using the correct network details.");
+                }
                 throw addError;
               }
+            } else if (switchError.code === -32603) {
+              alert("Please check if you have any pending MetaMask notifications.");
             }
             console.error("Failed to switch to Lens Sepolia network:", switchError);
             throw switchError;
@@ -86,7 +92,7 @@ export default function BrandSignup() {
         setIsWalletConnected(true);
       } catch (error) {
         console.error("Failed to connect wallet or switch network:", error);
-        alert("Failed to connect to Lens Sepolia Testnet. Please try again.");
+        alert(error.message);
       }
     } else {
       alert("MetaMask is not installed. Please install it to connect your wallet.");
