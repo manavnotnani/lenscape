@@ -90,7 +90,7 @@ export function Page() {
               Brand Signup
             </CardTitle>
             <CardDescription className="text-center text-gray-400">
-              Let's get your brand set up on Lenscape
+              Let's get your brand set up on Lenscape3
             </CardDescription>
           </CardHeader>
           <CardContent>

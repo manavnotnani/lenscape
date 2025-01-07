@@ -37,17 +37,59 @@ export default function BrandSignup() {
   const router = useRouter();
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined") {
+    if (typeof window.ethereum !== 'undefined') {
       try {
-        await window.ethereum.request({ method: "eth_requestAccounts" });
+        // Request account access
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        
+        // Get the current chain ID
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        
+        // Lens Sepolia Testnet Chain ID (in hex)
+        const lensChainId = '0x90EF'; // 37111 in decimal
+        
+        // If not on Lens Testnet, try to switch to it
+        if (chainId !== lensChainId) {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: lensChainId }],
+            });
+          } catch (switchError) {
+            // This error code indicates that the chain has not been added to MetaMask
+            if (switchError.code === 4902) {
+              try {
+                await window.ethereum.request({
+                  method: 'wallet_addEthereumChain',
+                  params: [{
+                    chainId: lensChainId,
+                    chainName: 'Lens Network Sepolia Testnet',
+                    nativeCurrency: {
+                      name: 'GRASS',
+                      symbol: 'GRASS',
+                      decimals: 18
+                    },
+                    rpcUrls: ['https://rpc.testnet.lens.dev'],
+                    blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
+                  }],
+                });
+              } catch (addError) {
+                console.error("Failed to add Lens Sepolia network:", addError);
+                throw addError;
+              }
+            }
+            console.error("Failed to switch to Lens Sepolia network:", switchError);
+            throw switchError;
+          }
+        }
+        
         setIsWalletConnected(true);
       } catch (error) {
-        console.error("Failed to connect wallet:", error);
+        console.error("Failed to connect wallet or switch network:", error);
+        alert("Failed to connect to Lens Sepolia Testnet. Please try again.");
       }
     } else {
-      alert(
-        "MetaMask is not installed. Please install it to connect your wallet."
-      );
+      alert("MetaMask is not installed. Please install it to connect your wallet.");
     }
   };
 
