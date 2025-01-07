@@ -22,8 +22,6 @@ RUN ls -ltra .
 # generate prisma
 RUN npm run db:generate
 
-RUN npm run db:push
-
 # build application
 RUN npm run build
 
