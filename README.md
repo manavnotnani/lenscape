@@ -1,4 +1,6 @@
-# Lenscape - Revolutionizing Influencer Marketing with Lens Protocol[WhatsApp Image 2024-09-28 at 08 27 39](https://github.com/user-attachments/assets/1108574c-e0b5-4894-ae26-e7c90109e5e2)
+# Lenscape - Revolutionizing Influencer Marketing with Lens Protocol
+
+![Lenscape Architecture](https://github.com/user-attachments/assets/1108574c-e0b5-4894-ae26-e7c90109e5e2)
 
 ## SocialFi: The Future of Marketing
 
