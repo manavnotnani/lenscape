@@ -1,118 +1,90 @@
-# Lens Network Hardhat Boilerplate
+# Lenscape - Revolutionizing Influencer Marketing with Lens Protocol
 
-This repository contains a boilerplate for developing smart contracts on the Lens Network using [Hardhat](https://hardhat.org/).
+(https://github.com/user-attachments/assets/1108574c-e0b5-4894-ae26-e7c90109e5e2)
 
-## Table of Contents <!-- omit in toc -->
+## SocialFi: The Future of Marketing
 
-- [Requirements](#requirements)
-- [Initial Setup](#initial-setup)
-- [Usage](#usage)
-- [Networks](#networks)
-- [License](#license)
+Lenscape operates within the **SocialFi** niche, leveraging the cutting-edge features of the Lens Protocol. By combining social and financial interactions, Lenscape redefines how brands and influencers collaborate.
 
-## Requirements
+### Lens Protocol Features Empowering Lenscape:
+- **Fastest Transactions:** Instant settlement of transactions.
+- **Lowest Costs:** Near-zero fees at all times.
+- **Scalable:** Seamlessly grow your campaigns without compromise.
+- **Secure:** Backed by Ethereum’s robust security.
+- **Modular Features:** Build, publish, earn, and scale effortlessly.
+- **User-Friendly Onboarding:** Join with an email or phone number for simple integration.
+- **Portable Data:** Easily switch between apps and platforms.
 
-- Node.js: >= v20
-- Yarn: v3.2.4
+## Video
 
-### Node.js <!-- omit in toc -->
+[Watch the Demo](https://drive.google.com/drive/folders/1x-0mcmgqVCiGrJt-0LmndmJu6MNNUESY)
 
-If you use [nvm](https://github.com/nvm-sh/nvm) to manage your Node.js versions, you can run:
+## About
 
-```bash
-nvm use
-```
+**Lenscape** is an AI-powered, decentralized platform built on the Lens Protocol testnet. It simplifies and enhances the influencer marketing process for brands and influencers by leveraging blockchain's transparency and AI's analytical power. Lenscape empowers brands and influencers to collaborate seamlessly, ensuring secure, transparent, and effective advertising campaigns.
 
-to switch to the correct Node.js version.
+## Key Features
 
-See the [installation guide](https://nodejs.org/en/download/package-manager) for other ways to install Node.js.
-
-### Yarn <!-- omit in toc -->
-
-Enable [Corepack](https://www.totaltypescript.com/how-to-use-corepack), if it isn't already; this will add the Yarn binary to your `PATH`:
-
-```bash
-corepack enable
-```
-
-See the [installation guide](https://yarnpkg.com/getting-started/install) for other ways to install Yarn.
-
-## Initial Setup
-
-Install dependencies:
-
-```bash
-yarn install
-```
-
-Create a `.env` file copying the `.env.example` file:
-
-```bash
-cp .env.example .env
-```
-
-Update the `.env` file with the correct values.
+- **AI-Powered Ratings:** Advanced AI evaluates influencer content to provide unbiased ratings based on quality and reach.
+- **Decentralized Platform:** Built on Lens Protocol for transparent, immutable, and secure transactions.
+- **Lens Integration:** Leverages Lens Protocol’s decentralized social graph for enhanced connectivity and functionality.
+- **User-Friendly Interface:** Designed for intuitive navigation and streamlined user experience for both brands and influencers.
 
 ## Usage
 
-### Compile <!-- omit in toc -->
+To get started with Lenscape:
 
-```bash
-yarn compile
+1. Select whether you are an **Influencer** or **Brand**.
+2. **For Influencers:**
+   - Connect your wallet and create your profile and category.
+3. **For Brands:**
+   - Connect your wallet and fill in essential details along with the category.
+4. Brands can list products they wish to promote and set budgets and the number of ads to be run.
+5. Brands can view and select influencers for their campaigns.
+6. Influencers can accept or reject campaign requests through their dashboard.
+7. Once an influencer accepts a request, they create a video on platforms like YouTube.
+8. Influencers paste the video ID and specify the language spoken in the video.
+9. Lenscape’s AI engine evaluates the video and provides ratings.
+10. Based on ratings and subscriber metrics, earnings are calculated automatically.
+11. Influencers can claim their earnings directly from their dashboard.
+
+## Installation
+
+To run Lenscape locally, add the following `.env` file to the **Lenscape_main** directory:
+
+```env
+DATABASE_URL=<add_postgreSQL_database_url>
+NODE_ENV='development'
+PORT=4000
+REDIS_HOST=<redis_host>
+REDIS_PORT=<redis_port>
+RPC_URL=<lens_testnet_rpc_url>
+SMART_CONTRACT_ADDR=<smart_contract_address_here>
+PRIVATE_KEY=<private_key>
+REWARD_RELEASE_FROM_ADDR=<reward_release_address_here>
 ```
 
-### Clean <!-- omit in toc -->
+## Contributing
 
-```bash
-yarn clean
-```
+We welcome contributions to Lenscape! Feel free to submit bug reports, feature requests, or pull requests to help improve the platform.
 
-### Lint <!-- omit in toc -->
+## Authors
 
-```bash
-yarn lint
-```
-
-### Test <!-- omit in toc -->
-
-Run tests on the Hardhat Network powered by a [ZKsync In-memory Node]((https://docs.zksync.io/build/test-and-debug/in-memory-node).
-
-```bash
-yarn test
-```
-
-To run tests on a specific network:
-
-```
-yarn test [--network <network-name>]
-```
-
-For example, to run tests on the `lensTestnet` network:
-
-```bash
-yarn test --network lensTestnet
-```
-
-> [!TIP]
-> zkSync In-memory Node currently supports only the L2 node. If contracts also need L1, use another testing environment like [Dockerized Node](https://docs.zksync.io/build/test-and-debug/dockerized-l1-l2-nodes).
-
-### Deploy <!-- omit in toc -->
-
-```bash
-yarn deploy --script <deploy-script.ts> --network <network-name>
-```
-
-For example:
-
-```bash
-yarn deploy --script deploy-token.ts --network lensTestnet
-```
-
-## Networks
-
-- `lensTestnet`: Lens Development Network (37111).
-- `hardhat`: runs on a ZKsync [In-Memory Node](https://docs.zksync.io/build/test-and-debug/in-memory-node) for testing.
+- [Manav Notnani](https://github.com/manavnotnani/) - Frontend Developer / Smart Contract Developer
+- [Karan Goel](https://github.com/kgoel085/) - Backend Developer
 
 ## License
 
-Lens Network Hardhat Boilerplate [MIT licensed](./LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+We would like to thank the Lens Protocol team, all contributors, and supporters who have helped make Lenscape possible.
+
+## Contracts
+
+**Lens Protocol Testnet Contracts:**
+
+- **Lenscape Contract Address:** 0xc790B7a3b2C76693E5d4982B6a9Fc0CCe7f4a823(https://block-explorer.testnet.lens.dev/address/0xc790B7a3b2C76693E5d4982B6a9Fc0CCe7f4a823)
+- **Reward Release Address:** 0xfEC7566c315DD70e098c0090362c61B13De8a13a
+
