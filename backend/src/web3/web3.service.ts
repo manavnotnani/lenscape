@@ -104,7 +104,14 @@ export class Web3Service {
         case 'RewardReleased': {
           sendData = true;
           const [dealId, influencer, rewardAmount, rating] = val.args;
-          obj = { ...obj, dealId, influencer, rewardAmount, rating, trx: val.transactionHash };
+          obj = {
+            ...obj,
+            dealId: Number(dealId).toString(),
+            influencer,
+            rewardAmount: Number(rewardAmount),
+            rating: Number(rating),
+            trx: val.transactionHash,
+          };
           break;
         }
         default:
