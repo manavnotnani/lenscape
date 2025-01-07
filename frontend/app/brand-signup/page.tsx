@@ -57,7 +57,7 @@ export default function BrandSignup() {
                 symbol: 'GRASS',
                 decimals: 18
               },
-              rpcUrls: ['https://lens-sepolia.g.alchemy.com/v2/ImFxenHhNywJzL'],
+              rpcUrls: ['https://rpc.testnet.lens.dev'],
               blockExplorerUrls: ['https://block-explorer.testnet.lens.dev']
             }],
           });
